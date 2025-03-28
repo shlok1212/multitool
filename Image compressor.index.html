@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Image Compressor - Multi-Tool Hub</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+  <style>
+    /* Import Google Font */
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+    /* Reset & Global Styles */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: #f5f5f5;
+      color: #333;
+      text-align: center;
+    }
+
+    /* Header */
+    .header {
+      background: white;
+      padding: 20px 50px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 24px;
+      font-weight: bold;
+      color: #ff4d4d;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: #ff4d4d;
+    }
+
+    /* Dark Mode Button */
+    .dark-mode-toggle {
+      background: black;
+      color: white;
+      padding: 8px 15px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .dark-mode-toggle:hover {
+      background: #222;
+    }
+
+    /* Tool Content */
+    .tool-content {
+      max-width: 960px;
+      margin: 30px auto;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: left;
+    }
+
+    .tool-content h1 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #ff4d4d;
+    }
+
+    .description {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    /* File Upload Section */
+    .upload-section {
+      text-align: center;
+      margin: 20px 0;
+    }
+    .upload-label {
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 10px;
+      display: block;
+    }
+    .upload-btn {
+      background: #ff4d4d;
+      color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: 0.3s;
+    }
+    .upload-btn:hover {
+      background: #e63e3e;
+    }
+    .upload-input {
+      display: none;
+    }
+
+    /* Compression Options */
+    .options {
+      margin: 20px 0;
+      text-align: center;
+    }
+    .options label {
+      margin-right: 10px;
+      font-weight: 600;
+    }
+    .options select {
+      padding: 8px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-size: 16px;
+    }
+
+    /* Result Section */
+    .result {
+      margin-top: 20px;
+      text-align: center;
+      display: none;
+    }
+    .result p {
+      margin: 10px 0;
+      font-size: 16px;
+    }
+    .result button {
+      background: #28a745;
+      color: white;
+      padding: 10px 15px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: 0.3s;
+      font-size: 16px;
+    }
+    .result button:hover {
+      background: #218838;
+    }
+
+    /* Back to Tools Link */
+    .back-to-tools {
+      display: block;
+      text-align: center;
+      margin-top: 20px;
+      color: #333;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 30px;
+      padding: 15px;
+      background: #222;
+      color: white;
+      font-size: 14px;
+      text-align: center;
+    }
+
+    /* Dark Mode Styles */
+    body.dark-mode {
+      background: #1e1e1e;
+      color: white;
+    }
+    body.dark-mode .header,
+    body.dark-mode .tool-content {
+      background: #2a2a2a;
+      color: white;
+    }
+    body.dark-mode .dark-mode-toggle {
+      background: white;
+      color: black;
+    }
+    body.dark-mode .nav-links a {
+      color: white;
+    }
+  </style>
+</head>
+<body onload="applyDarkMode()">
+  <!-- Header Section -->
+  <div class="header">
+    <div class="logo">Multi-Tool Hub</div>
+    <div class="nav-links">
+      <a href="/">Home</a>
+      <a href="/p/tools.html">Tools</a>
+      <a href="/p/contact.html">Contact</a>
+    </div>
+    <div class="dark-mode-toggle" onclick="toggleDarkMode()">Dark Mode</div>
+  </div>
+
+  <!-- Hero Section -->
+  <div class="hero">
+    <h1>Every tool you need in one place</h1>
+    <p>Access a collection of free, online tools for images, PDFs, SEO, AI, and more – all in one hub.</p>
+  </div>
+
+  <!-- Tool Content for Image Compressor -->
+  <div class="tool-content">
+    <h1>Image Compressor</h1>
+    <p class="description">Upload an image (JPEG/PNG) to compress and reduce its file size.</p>
+    
+    <!-- File Upload Section -->
+    <div class="upload-section">
+      <label for="file-upload" class="upload-label">Select an image to upload:</label>
+      <input type="file" id="file-upload" class="upload-input" accept="image/jpeg, image/png" onchange="handleFile(event)">
+      <button class="upload-btn" onclick="document.getElementById('file-upload').click()">
+        <i class="fas fa-upload"></i> Upload Image
+      </button>
+    </div>
+
+    <!-- Compression Options -->
+    <div class="options">
+      <label for="compression-level">Compression Level:</label>
+      <select id="compression-level">
+        <option value="0.8">Low</option>
+        <option value="0.6" selected>Medium</option>
+        <option value="0.4">High</option>
+      </select>
+    </div>
+
+    <!-- Compress Button -->
+    <div class="upload-section">
+      <button class="upload-btn" onclick="compressImage()">Compress Image</button>
+    </div>
+
+    <!-- Result Section -->
+    <div class="result" id="result-section">
+      <p>Original Size: <span id="original-size">0</span> KB</p>
+      <p>Compressed Size: <span id="compressed-size">0</span> KB</p>
+      <button onclick="downloadCompressed()">Download Compressed Image</button>
+    </div>
+  </div>
+
+  <!-- Back to Tools Link -->
+  <a href="/" class="back-to-tools">Back to All Tools</a>
+
+  <!-- Footer -->
+  <div class="footer">
+    &copy; 2025 Multi-Tool Hub. All Rights Reserved.
+  </div>
+
+  <script>
+    // Dark Mode Persistence
+    function toggleDarkMode() {
+      document.body.classList.toggle("dark-mode");
+      localStorage.setItem("darkMode", document.body.classList.contains("dark-mode") ? "enabled" : "disabled");
+    }
+    function applyDarkMode() {
+      if (localStorage.getItem("darkMode") === "enabled") {
+        document.body.classList.add("dark-mode");
+      }
+    }
+
+    // Image Compressor Functionality (Simulated)
+    let uploadedFile;
+    function handleFile(event) {
+      uploadedFile = event.target.files[0];
+    }
+
+    function compressImage() {
+      if (!uploadedFile) {
+        alert("Please upload an image first.");
+        return;
+      }
+      
+      const compressionLevel = parseFloat(document.getElementById("compression-level").value);
+      const originalSize = uploadedFile.size / 1024; // size in KB
+      const compressedSize = (originalSize * compressionLevel).toFixed(2);
+      
+      document.getElementById("original-size").innerText = originalSize.toFixed(2);
+      document.getElementById("compressed-size").innerText = compressedSize;
+      
+      // Display result section
+      document.getElementById("result-section").style.display = "block";
+    }
+
+    function downloadCompressed() {
+      // Since actual compression isn't done, we simulate download of the original file
+      alert("This is a simulation. Actual compression requires server-side processing.");
+    }
+  </script>
+</body>
+</html>
